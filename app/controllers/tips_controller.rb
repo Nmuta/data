@@ -1,8 +1,18 @@
 class TipsController < ApplicationController
   before_action :set_tip, only: [:show, :edit, :update, :destroy]
 
+
   # GET /tips
   # GET /tips.json
+
+  def get_tip
+    tip = Tip.find(rand(Tip.count)).tip
+    respond_to do |format|
+      format.json { render json: tip }
+    end
+  end
+
+
   def index
     @tips = Tip.all
   end
