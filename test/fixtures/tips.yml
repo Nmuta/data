@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tip: MyString
+  user_id: 1
+  frequency: 1
+  icon_id: 1
+
+two:
+  tip: MyString
+  user_id: 1
+  frequency: 1
+  icon_id: 1
