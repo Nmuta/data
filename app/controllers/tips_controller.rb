@@ -6,7 +6,8 @@ class TipsController < ApplicationController
   # GET /tips.json
 
   def get_tip
-    tip = Tip.find(rand(Tip.count+1))
+    rand_id = rand(Tip.count)
+    tip = Tip.offset(rand_id).first
     respond_to do |format|
       format.json { render json: {info: tip.tip, image: tip.tip_image} }
     end
