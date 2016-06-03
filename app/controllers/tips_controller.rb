@@ -6,9 +6,9 @@ class TipsController < ApplicationController
   # GET /tips.json
 
   def get_tip
-    tip = Tip.find(rand(Tip.count+1)).tip
+    tip = Tip.find(rand(Tip.count+1))
     respond_to do |format|
-      format.json { render json: {info: tip} }
+      format.json { render json: {info: tip.tip, image: tip.tip_image} }
     end
   end
 
@@ -50,6 +50,7 @@ class TipsController < ApplicationController
   # PATCH/PUT /tips/1
   # PATCH/PUT /tips/1.json
   def update
+    # binding.pry
     respond_to do |format|
       if @tip.update(tip_params)
         format.html { redirect_to @tip, notice: 'Tip was successfully updated.' }
@@ -79,6 +80,6 @@ class TipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tip_params
-      params.require(:tip).permit(:tip, :user_id, :frequency, :icon_id)
+      params.require(:tip).permit(:tip, :user_id, :frequency, :tip_image)
     end
 end

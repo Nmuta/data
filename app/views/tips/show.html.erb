@@ -17,8 +17,10 @@
 
 <p>
   <strong>Icon:</strong>
-  <%= @tip.icon_id %>
+  <%= image_tag @tip.tip_image.url %>
 </p>
+
+
 
 <%= link_to 'Edit', edit_tip_path(@tip) %> |
 <%= link_to 'Back', tips_path %>

@@ -9,6 +9,8 @@ gem 'rails', '4.2.5'
 #switch to postgres
 gem 'pg'
 
+gem "paperclip", "~> 5.0.0.beta1"
+
 gem 'rails_12factor', group: :production
 
 # Use SCSS for stylesheets
@@ -51,5 +53,7 @@ group :development do
   gem 'spring'
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry'
 end
 
