@@ -9,11 +9,12 @@ class UsersController < ApplicationController
   end
 
   def get_user
-    puts "hi params: #{params}"
-    valid_user = User.where(username: params[:username].downcase, password: params[:password].downcase)
+    usr = downcase_param(params[:username])
+    pass = downcase_param(params[:password])
+    valid_user = User.where(username: usr, password: pass)
     valid_user_exists = valid_user.exists?
-    user_name = valid_user ? valid_user.first.username : nil
-    user_id = valid_user ? valid_user.first.id : nil
+    user_name = valid_user_exists ? valid_user.first.username : nil
+    user_id = valid_user_exists ? valid_user.first.id : nil
 
     respond_to do |format|
       format.json { render json: {valid_user: valid_user, user_name: user_name, user_id: user_id} }
@@ -78,6 +79,10 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def downcase_param(incoming)
+      incoming ? incoming.downcase : nil
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
