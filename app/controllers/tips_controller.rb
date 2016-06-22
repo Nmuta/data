@@ -8,8 +8,9 @@ class TipsController < ApplicationController
   def get_tip
     rand_id = rand(Tip.count)
     tip = Tip.offset(rand_id).first
+    the_host = Rails.env=="production" ? request.host : "http://localhost:3000"
     respond_to do |format|
-      format.json { render json: {info: tip.tip, image: tip.tip_image} }
+      format.json { render json: {info: tip.tip, image: (the_host)+(tip.tip_image.url) } }
     end
   end
 
