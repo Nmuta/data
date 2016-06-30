@@ -9,15 +9,17 @@ class UsersController < ApplicationController
   end
 
   def get_user
-    usr = downcase_param(params[:username])
-    pass = downcase_param(params[:password])
+    parsed_incoming_data = params.first[0].split('"')
+    usr = params[:username] || downcase_param(parsed_incoming_data[3])
+    pass = params[:password] ||  downcase_param(parsed_incoming_data[5])
+
     valid_user = User.where(username: usr, password: pass)
     valid_user_exists = valid_user.exists?
     user_name = valid_user_exists ? valid_user.first.username : nil
     user_id = valid_user_exists ? valid_user.first.id : nil
 
     respond_to do |format|
-      format.json { render json: {valid_user: valid_user, user_name: user_name, user_id: user_id} }
+      format.json { render json: {valid_user: valid_user_exists, user_name: user_name, user_id: user_id} }
     end
   end
 

@@ -7,6 +7,16 @@ class EmotionsController < ApplicationController
     @emotions = Emotion.all
   end
 
+  def get_emotions
+    emotions = Emotion.all.map{|e| {"id" =>e.id, "name"=>e.emotion} }
+    the_host = Rails.env=="production" ? "https://"+request.host : "http://localhost:3000"
+    respond_to do |format|
+      format.json { render json: {emotions: emotions} }
+    end
+  end
+
+
+
   # GET /emotions/1
   # GET /emotions/1.json
   def show
