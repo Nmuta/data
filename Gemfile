@@ -6,6 +6,8 @@ gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 
+ruby '2.2.3'
+
 #switch to postgres
 gem 'pg'
 
