@@ -9,10 +9,25 @@ class EventsController < ApplicationController
 
   def post_event
     parsed_incoming_data = params.first[0].split('"')
+
+    puts parsed_incoming_data
+
     user_id = params[:user_id] || (parsed_incoming_data[3]).to_i
     emotion_id = params[:emotion_id] ||  (parsed_incoming_data[7]).to_i
+    the_date = params[:the_date] ||  (parsed_incoming_data[11])
+    time_of_day = params[:time_of_day] ||  (parsed_incoming_data[15]).gsub(" ","_")
 
-    event = Event.create(user_id: user_id, emotion_id: emotion_id )
+
+    arr = the_date.split("/")
+    arr_2 = arr.unshift(arr[2])
+    arr_2.pop()
+
+    arr_4 = arr_2.join("-")
+
+    logged_time = DateTime.strptime(arr_4,'%Y-%m-%d')
+
+
+    event = Event.create(user_id: user_id, emotion_id: emotion_id, logged_time: logged_time, time_of_day: time_of_day)
     valid = event.persisted?
     respond_to do |format|
       format.json { render json: {valid: valid} }
@@ -22,7 +37,7 @@ class EventsController < ApplicationController
   def get_user_history
     parsed_incoming_data = params.first[0].split('"')
     user_id = params[:user_id] || (parsed_incoming_data[3]).to_i
-    history = Event.where(user_id: user_id).map{|e| {emotion: e.emotion.emotion, timestamp: e.logged_time}}
+    history = Event.where(user_id: user_id).map{|e| {emotion: e.emotion.emotion, logged_time: e.logged_time, time_of_day: e.time_of_day}}
     respond_to do |format|
       format.json { render json: {history: history} }
     end
