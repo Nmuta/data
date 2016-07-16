@@ -24,7 +24,8 @@ class EventsController < ApplicationController
 
     arr_4 = arr_2.join("-")
 
-    logged_time = DateTime.strptime(arr_4,'%Y-%m-%d')
+    logged_time = DateTime.strptime(arr_4,'%Y-%m-%d');
+    logged_time = logged_time + 4.hours; # set to 4:00 am on the given day, otherwise it can be read as previous day
 
 
     event = Event.create(user_id: user_id, emotion_id: emotion_id, logged_time: logged_time, time_of_day: time_of_day)
