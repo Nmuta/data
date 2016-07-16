@@ -17,14 +17,15 @@ class EventsController < ApplicationController
     the_date = params[:the_date] ||  (parsed_incoming_data[11])
     time_of_day = params[:time_of_day] ||  (parsed_incoming_data[15]).gsub(" ","_")
 
+    # puts("the date I received is "+the_date)
 
-    arr = the_date.split("/")
-    arr_2 = arr.unshift(arr[2])
-    arr_2.pop()
+    # arr = the_date.split("/")
+    # arr_2 = arr.unshift(arr[2])
+    # arr_2.pop()
 
-    arr_4 = arr_2.join("-")
+    # arr_4 = arr_2.join("-")
 
-    logged_time = DateTime.strptime(arr_4,'%Y-%m-%d');
+    logged_time = DateTime.strptime(the_date,'%Y-%m-%d');
     logged_time = logged_time + 4.hours; # set to 4:00 am on the given day, otherwise it can be read as previous day
 
 
