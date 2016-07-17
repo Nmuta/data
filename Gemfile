@@ -11,7 +11,8 @@ ruby '2.2.3'
 #switch to postgres
 gem 'pg'
 
-gem "paperclip", "~> 5.0.0.beta1"
+# gem "paperclip", "~> 5.0.0.beta1"
+gem "paperclip", "~> 4.3"
 
 # gem 'aws-sdk'
 gem 'aws-sdk', '< 2.0'
