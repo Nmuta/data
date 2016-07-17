@@ -19,7 +19,7 @@
         <td><%= tip.tip %></td>
         <td><%= tip.user_id %></td>
         <td><%= tip.frequency %></td>
-        <td><%= tip.icon_id %></td>
+        <td><%= tip.avatar(:thumb) %></td>
         <td><%= link_to 'Show', tip %></td>
         <td><%= link_to 'Edit', edit_tip_path(tip) %></td>
         <td><%= link_to 'Destroy', tip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
