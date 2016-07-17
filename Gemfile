@@ -13,6 +13,9 @@ gem 'pg'
 
 gem "paperclip", "~> 5.0.0.beta1"
 
+# gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
+
 gem 'rails_12factor', group: :production
 
 # Use SCSS for stylesheets
