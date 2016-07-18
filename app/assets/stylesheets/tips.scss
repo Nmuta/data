@@ -4,5 +4,5 @@
 
 table.tip_table{
   img {width: 50px;}
-  tr:nth-child(even) {background: #CCC}
+  tr:nth-child(odd) {background: #ddd}
 }
