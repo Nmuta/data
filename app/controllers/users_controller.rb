@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def post_user
     parsed_incoming_data = params.first[0].split('"')
-    
+
     user_name = params[:new_user_name] || (parsed_incoming_data[3])
     password = params[:new_user_password] ||  (parsed_incoming_data[7])
     campus_id = params[:campus_id] ||  (parsed_incoming_data[11])
@@ -34,10 +34,10 @@ class UsersController < ApplicationController
   def get_user
     parsed_incoming_data = params.first[0].split('"')
     usr = params[:username] || downcase_param(parsed_incoming_data[3])
-    pass = params[:password] ||  downcase_param(parsed_incoming_data[5])
+    pass = params[:password] ||  downcase_param(parsed_incoming_data[7])
 
     valid_user = User.where(username: usr, password: pass)
-    valid_user_exists = valid_user.exists?
+    valid_user_exists = valid_user.any?
     user_name = valid_user_exists ? valid_user.first.username : nil
     user_id = valid_user_exists ? valid_user.first.id : nil
 
