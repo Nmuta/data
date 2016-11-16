@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :partners
+  resources :campuses
   resources :events
   resources :emotions
   resources :users
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
 
   get 'get_tip' => 'tips#get_tip'
   get 'get_emotions' => 'emotions#get_emotions'
+  get 'get_campuses' => 'campuses#get_campuses'
   post 'post_event' => 'events#post_event'
   post 'get_user_history' => 'events#get_user_history'
   post 'get_user' => 'users#get_user'

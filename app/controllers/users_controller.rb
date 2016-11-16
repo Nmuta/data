@@ -9,12 +9,14 @@ class UsersController < ApplicationController
   end
 
   def post_user
-    parsed_incoming_data = params.first[0].split('"')
+    parsed_incoming_data = params.first[0].delete("}").delete(":").split('"')
 
     user_name = params[:new_user_name] || (parsed_incoming_data[3])
     password = params[:new_user_password] ||  (parsed_incoming_data[7])
-    campus_id = params[:campus_id] ||  (parsed_incoming_data[11])
+    campus_id = params[:campus_id] ||  (parsed_incoming_data[10])
     user_id = nil
+
+
 
     user_in_db = User.where(username: user_name)
     if (user_in_db.any?)
@@ -22,12 +24,13 @@ class UsersController < ApplicationController
     else
       u = User.create(username: user_name, password: password, campus_id: campus_id)
       user_id = u.id
+      campus_name = u.campus.name
       duplicate_user = false;
     end
 
 
     respond_to do |format|
-      format.json { render json: {duplicate_user: duplicate_user, user_name: user_name, user_id: user_id} }
+      format.json { render json: {duplicate_user: duplicate_user, user_name: user_name, user_id: user_id, campus_name: campus_name} }
     end
   end
 
@@ -40,9 +43,10 @@ class UsersController < ApplicationController
     valid_user_exists = valid_user.any?
     user_name = valid_user_exists ? valid_user.first.username : nil
     user_id = valid_user_exists ? valid_user.first.id : nil
+    campus_name = valid_user_exists ? valid_user.first.campus.name : nil
 
     respond_to do |format|
-      format.json { render json: {valid_user: valid_user_exists, user_name: user_name, user_id: user_id} }
+      format.json { render json: {valid_user: valid_user_exists, user_name: user_name, user_id: user_id, campus_name: campus_name} }
     end
   end
 

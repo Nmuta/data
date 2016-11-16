@@ -16,20 +16,24 @@ class EventsController < ApplicationController
     emotion_id = params[:emotion_id] ||  (parsed_incoming_data[7]).to_i
     the_date = params[:the_date] ||  (parsed_incoming_data[11])
     time_of_day = params[:time_of_day] ||  (parsed_incoming_data[15]).gsub(" ","_")
+    who_with = params[:who_with_id] ||  (parsed_incoming_data[19]).gsub(" ","_")
 
-    # puts("the date I received is "+the_date)
 
-    # arr = the_date.split("/")
-    # arr_2 = arr.unshift(arr[2])
-    # arr_2.pop()
+    found_person = Partner.where(name: who_with)
+    if found_person
+      who_with_id = found_person.first.id
+    else
+      who_with_id = null
+    end
 
-    # arr_4 = arr_2.join("-")
+
+
 
     logged_time = DateTime.strptime(the_date,'%Y-%m-%d');
     logged_time = logged_time + 4.hours; # set to 4:00 am on the given day, otherwise it can be read as previous day
 
 
-    event = Event.create(user_id: user_id, emotion_id: emotion_id, logged_time: logged_time, time_of_day: time_of_day)
+    event = Event.create(user_id: user_id, emotion_id: emotion_id, logged_time: logged_time, time_of_day: time_of_day, who_with_id: who_with_id)
     valid = event.persisted?
     respond_to do |format|
       format.json { render json: {valid: valid} }
@@ -64,7 +68,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
+    binding.pry
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
