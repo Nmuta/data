@@ -18,13 +18,13 @@ class EventsController < ApplicationController
     time_of_day = params[:time_of_day] ||  (parsed_incoming_data[15]).gsub(" ","_")
     who_with = params[:who_with_id] ||  (parsed_incoming_data[19]).gsub(" ","_")
 
-    found_person = Partner.get_person_by_name(who_with)
+    found_person_id = Partner.get_person_by_name(who_with)
 
     logged_time = DateTime.strptime(the_date,'%Y-%m-%d');
     logged_time = logged_time + 4.hours; # set to 4:00 am on the given day, otherwise it can be read as previous day
 
 
-    event = Event.create(user_id: user_id, emotion_id: emotion_id, logged_time: logged_time, time_of_day: time_of_day, partner_id: who_with_id)
+    event = Event.create(user_id: user_id, emotion_id: emotion_id, logged_time: logged_time, time_of_day: time_of_day, partner_id: found_person_id)
     valid = event.persisted?
     respond_to do |format|
       format.json { render json: {valid: valid} }

@@ -9,6 +9,6 @@ class Partner < ActiveRecord::Base
 
   def self.get_person_by_name(who_with)
     person = self.where(name: who_with)
-    found = person ? person.first.id : null
+    found = person.present? ? person.first.id : null
   end
 end
