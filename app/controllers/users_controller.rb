@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     valid_user_exists = valid_user.any?
     user_name = valid_user_exists ? valid_user.first.username : nil
     user_id = valid_user_exists ? valid_user.first.id : nil
-    campus_name = valid_user_exists ? valid_user.first.campus.name : nil
+    campus_name = (valid_user_exists && valid_user.first.campus) ? valid_user.first.campus.name : nil
 
     respond_to do |format|
       format.json { render json: {valid_user: valid_user_exists, user_name: user_name, user_id: user_id, campus_name: campus_name} }
