@@ -17,6 +17,8 @@ class EventsController < ApplicationController
     the_date = params[:the_date] ||  (parsed_incoming_data[11])
     time_of_day = params[:time_of_day] ||  (parsed_incoming_data[15]).gsub(" ","_")
     who_with = params[:who_with_id] ||  (parsed_incoming_data[19]).gsub(" ","_")
+    my_response = params[:who_with_id] ||  (parsed_incoming_data[23]).gsub(" ","_")
+    notes = params[:who_with_id] ||  (parsed_incoming_data[27]).gsub(" ","_")
 
     found_person_id = Partner.get_person_by_name(who_with)
 
@@ -24,7 +26,9 @@ class EventsController < ApplicationController
     logged_time = logged_time + 4.hours; # set to 4:00 am on the given day, otherwise it can be read as previous day
 
 
-    event = Event.create(user_id: user_id, emotion_id: emotion_id, logged_time: logged_time, time_of_day: time_of_day, partner_id: found_person_id)
+    event = Event.create(user_id: user_id, emotion_id: emotion_id,
+                         logged_time: logged_time, time_of_day: time_of_day, partner_id: found_person_id,
+                          my_response: my_response, notes: notes)
     valid = event.persisted?
     respond_to do |format|
       format.json { render json: {valid: valid} }
