@@ -11,6 +11,9 @@ ruby '2.2.3'
 #switch to postgres
 gem 'pg'
 
+# Devise for auth
+gem 'devise'
+
 # gem "paperclip", "~> 5.0.0.beta1"
 gem "paperclip", "~> 4.3"
 

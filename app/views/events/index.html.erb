@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Campus</th>
       <th>User</th>
       <th>Emotion</th>
       <th>Logged time</th>
@@ -15,8 +16,9 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.user_id %></td>
-        <td><%= event.emotion_id %></td>
+        <td><%= event.user.campus ? event.user.campus.name : nil %></td>
+        <td><%= event.user.email %></td>
+        <td><%= event.emotion.emotion %></td>
         <td><%= event.logged_time %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
