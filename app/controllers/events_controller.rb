@@ -43,7 +43,12 @@ class EventsController < ApplicationController
     history = Event.where(user_id: user_id).map{|e| {emotion: e.emotion.emotion,
                                                      logged_time: e.logged_time,
                                                      time_of_day: e.time_of_day,
-                                                     who_with: (e.partner.present? ? e.partner.name : nil) }}
+                                                     who_with: (e.partner.present? ? e.partner.name : nil),
+                                                     my_response: e.my_response,
+                                                     notes: e.notes
+                                                     }}
+
+
     respond_to do |format|
       format.json { render json: {history: history} }
     end
