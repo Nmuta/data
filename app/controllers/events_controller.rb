@@ -17,8 +17,8 @@ class EventsController < ApplicationController
     the_date = params[:the_date] ||  (parsed_incoming_data[11])
     time_of_day = params[:time_of_day] ||  (parsed_incoming_data[15]).gsub(" ","_")
     who_with = params[:who_with_id] ||  (parsed_incoming_data[19]).gsub(" ","_")
-    my_response = params[:who_with_id] ||  (parsed_incoming_data[23]).gsub(" ","_")
-    notes = params[:who_with_id] ||  (parsed_incoming_data[27]).gsub(" ","_")
+    my_response = params[:who_with_id] ||  (parsed_incoming_data[23])
+    notes = params[:who_with_id] ||  (parsed_incoming_data[27])
 
     found_person_id = Partner.get_person_by_name(who_with)
 
