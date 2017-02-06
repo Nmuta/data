@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Profiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Hair choice</th>
+      <th>Skin tone</th>
+      <th>Facebase</th>
+      <th>Nose</th>
+      <th>Glasses</th>
+      <th>Moustache</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.user_id %></td>
+        <td><%= profile.hair_choice %></td>
+        <td><%= profile.skin_tone %></td>
+        <td><%= profile.facebase %></td>
+        <td><%= profile.nose %></td>
+        <td><%= profile.glasses %></td>
+        <td><%= profile.moustache %></td>
+        <td><%= profile.active %></td>
+        <td><%= link_to 'Show', profile %></td>
+        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile', new_profile_path %>

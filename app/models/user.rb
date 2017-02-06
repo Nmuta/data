@@ -4,5 +4,10 @@ class User < ActiveRecord::Base
 
   belongs_to :campus
   has_many :events
+  has_many :profiles
+
+  def active_profile
+    self.profiles  ?  self.profiles.first  : nil
+  end
 
 end

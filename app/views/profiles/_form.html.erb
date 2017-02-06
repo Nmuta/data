@@ -1,0 +1,49 @@
+<%= form_for(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :hair_choice %><br>
+    <%= f.number_field :hair_choice %>
+  </div>
+  <div class="field">
+    <%= f.label :skin_tone %><br>
+    <%= f.text_field :skin_tone %>
+  </div>
+  <div class="field">
+    <%= f.label :facebase %><br>
+    <%= f.number_field :facebase %>
+  </div>
+  <div class="field">
+    <%= f.label :nose %><br>
+    <%= f.number_field :nose %>
+  </div>
+  <div class="field">
+    <%= f.label :glasses %><br>
+    <%= f.number_field :glasses %>
+  </div>
+  <div class="field">
+    <%= f.label :moustache %><br>
+    <%= f.number_field :moustache %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

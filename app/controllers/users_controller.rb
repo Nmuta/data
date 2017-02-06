@@ -38,15 +38,29 @@ class UsersController < ApplicationController
     parsed_incoming_data = params.first[0].split('"')
     usr = params[:username] || downcase_param(parsed_incoming_data[3])
     pass = params[:password] ||  downcase_param(parsed_incoming_data[7])
+    hair, skin, facebase, glasses, moustache, earrings, hair_color = nil
 
     valid_user = User.where(username: usr, password: pass)
     valid_user_exists = valid_user.any?
     user_name = valid_user_exists ? valid_user.first.username : nil
     user_id = valid_user_exists ? valid_user.first.id : nil
     campus_name = (valid_user_exists && valid_user.first.campus) ? valid_user.first.campus.name : nil
+    if valid_user_exists && valid_user.first && valid_user.first.active_profile
+      vu = valid_user.first
+      hair = vu.active_profile.hair
+      skin = vu.active_profile.skin
+      facebase = vu.active_profile.facebase
+      glasses = vu.active_profile.glasses
+      earrings = vu.active_profile.earrings
+      moustache = vu.active_profile.earrings
+      hair_color = vu.active_profile.hair_color
+    end
 
     respond_to do |format|
-      format.json { render json: {valid_user: valid_user_exists, user_name: user_name, user_id: user_id, campus_name: campus_name} }
+      format.json { render json: {valid_user: valid_user_exists, user_name: user_name,
+                                  user_id: user_id, campus_name: campus_name,
+                                  hair: hair, skin: skin, facebase: facebase,
+                                  glasses: glasses, moustache: moustache, earrings: earrings} }
     end
   end
 

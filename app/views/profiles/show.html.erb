@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @profile.user_id %>
+</p>
+
+<p>
+  <strong>Hair choice:</strong>
+  <%= @profile.hair_choice %>
+</p>
+
+<p>
+  <strong>Skin tone:</strong>
+  <%= @profile.skin_tone %>
+</p>
+
+<p>
+  <strong>Facebase:</strong>
+  <%= @profile.facebase %>
+</p>
+
+<p>
+  <strong>Nose:</strong>
+  <%= @profile.nose %>
+</p>
+
+<p>
+  <strong>Glasses:</strong>
+  <%= @profile.glasses %>
+</p>
+
+<p>
+  <strong>Moustache:</strong>
+  <%= @profile.moustache %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @profile.active %>
+</p>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>
