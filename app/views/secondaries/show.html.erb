@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @secondary.name %>
+</p>
+
+<p>
+  <strong>Emotion:</strong>
+  <%= @secondary.emotion_id %>
+</p>
+
+<%= link_to 'Edit', edit_secondary_path(@secondary) %> |
+<%= link_to 'Back', secondaries_path %>

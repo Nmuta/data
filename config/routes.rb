@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :reponses
+  resources :tertiaries
+  resources :secondaries
   resources :profiles
   resources :partners
   resources :campuses
