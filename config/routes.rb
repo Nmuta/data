@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :reponses
+  resources :responses
   resources :tertiaries
   resources :secondaries
   resources :profiles
