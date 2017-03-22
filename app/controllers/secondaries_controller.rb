@@ -4,7 +4,7 @@ class SecondariesController < ApplicationController
   # GET /secondaries
   # GET /secondaries.json
   def index
-    @secondaries = Secondary.all
+    @secondaries = Secondary.all.order(:emotion_id)
   end
 
   # GET /secondaries/1

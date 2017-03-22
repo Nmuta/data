@@ -15,7 +15,7 @@
     <% @tertiaries.each do |tertiary| %>
       <tr>
         <td><%= tertiary.name %></td>
-        <td><%= tertiary.emotion_id %></td>
+        <td><%= tertiary.emotion.emotion %></td>
         <td><%= link_to 'Show', tertiary %></td>
         <td><%= link_to 'Edit', edit_tertiary_path(tertiary) %></td>
         <td><%= link_to 'Destroy', tertiary, method: :delete, data: { confirm: 'Are you sure?' } %></td>

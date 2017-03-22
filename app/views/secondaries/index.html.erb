@@ -15,7 +15,7 @@
     <% @secondaries.each do |secondary| %>
       <tr>
         <td><%= secondary.name %></td>
-        <td><%= secondary.emotion_id %></td>
+        <td><%= secondary.emotion.emotion %></td>
         <td><%= link_to 'Show', secondary %></td>
         <td><%= link_to 'Edit', edit_secondary_path(secondary) %></td>
         <td><%= link_to 'Destroy', secondary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Secondary', new_secondary_path %>
+<%= link_to 'New Secondary',  new_secondary_path %>

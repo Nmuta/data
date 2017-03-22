@@ -4,7 +4,7 @@ class TertiariesController < ApplicationController
   # GET /tertiaries
   # GET /tertiaries.json
   def index
-    @tertiaries = Tertiary.all
+    @tertiaries = Tertiary.all.order(:emotion_id)
   end
 
   # GET /tertiaries/1
