@@ -15,6 +15,19 @@ class EmotionsController < ApplicationController
     end
   end
 
+  def bulk_add
+    @emotions = Emotion.all
+  end
+
+  def bulk_processing
+    success = Emotion.bulk_add(params[:clazz], params[:emotion_id], params[:word_list])
+
+    data = {foo: success}
+    respond_to do |format|
+      format.json { render json: {data: data} }
+    end
+  end
+
 
 
   # GET /emotions/1

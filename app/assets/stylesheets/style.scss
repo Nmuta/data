@@ -7,10 +7,10 @@ table {
 
 table td{
   padding: 10px;
-  
+
 }
 
-table tr:nth-child(2){
+table tr:nth-child(odd){
   padding: 10px;
   background-color:#eee;
 }

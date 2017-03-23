@@ -1,0 +1,56 @@
+Add an list of emotions here separated by colons
+
+
+
+<form id="curry">
+
+  <div>
+    <select id="target_class">
+      <option value="Secondary">Secondary</option>
+      <option value="Tertiary">Tertiary</option>
+      <option value="Response">Response</option>
+    </select>
+  </div>
+
+  <div>
+    <select id="emotion_id">
+        <% @emotions.each do |emo| %>
+            <option value="<%=emo.id%>"><%= emo.emotion %></option>
+        <% end %>
+    </select>
+  </div>
+
+
+  <div>
+      <textarea name="" id="bulkstuff" cols="30" rows="10"></textarea>
+  </div>
+
+  <input type="submit" name="submit" value="submit items">
+
+  <div class="result">
+
+  </div>
+
+</form>
+
+
+<script type="text/javascript">
+
+    $("#curry").on("submit", function(e){
+        var clazz = $("#target_class option:selected").val();
+        var emotion_id = $("#emotion_id option:selected").val();
+        var word_list = $("#bulkstuff").val().trim();
+
+        data = {clazz: clazz, emotion_id: emotion_id, word_list: word_list  }
+
+        $.post( "/bulk_processing",data).done(function(msg){
+            $( ".result" ).html( "Successful creation " +msg.data.foo );
+        }).fail(function(err){
+            $( ".result" ).html( "Unsuccessful creation " +err);
+        }).always(function(){
+
+        });
+
+        e.preventDefault();
+    });
+</script>
