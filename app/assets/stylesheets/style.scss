@@ -15,6 +15,11 @@ table tr:nth-child(odd){
   background-color:#eee;
 }
 
+table tr:nth-child(even){
+  padding: 10px;
+  background-color:#dde;
+}
+
 .menu{
   background-color: #333;
   width: 100vw;
@@ -55,5 +60,13 @@ body{
 }
 
 .comoros img{
-  margin: 50px; 
+  margin: 50px;
+}
+
+.bulk_box{
+  margin: 0px auto;
+  width: 500px;
+  height: 300px;
+  border: 1px solid white;
+  padding: 20px;
 }

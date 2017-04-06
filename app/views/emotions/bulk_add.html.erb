@@ -1,37 +1,40 @@
-Add an list of emotions here separated by colons
+<div class="bulk_box">
+    Add an list of emotions here separated by colons
 
 
 
-<form id="curry">
+    <form id="curry">
 
-  <div>
-    <select id="target_class">
-      <option value="Secondary">Secondary</option>
-      <option value="Tertiary">Tertiary</option>
-      <option value="Response">Response</option>
-    </select>
+      <div>
+        <select id="target_class">
+          <option value="Secondary">Secondary</option>
+          <option value="Tertiary">Tertiary</option>
+          <option value="Response">Response</option>
+        </select>
+      </div>
+
+      <div>
+        <select id="emotion_id">
+            <% @emotions.each do |emo| %>
+                <option value="<%=emo.id%>"><%= emo.emotion %></option>
+            <% end %>
+        </select>
+      </div>
+
+
+      <div>
+          <textarea name="" id="bulkstuff" cols="30" rows="10"></textarea>
+      </div>
+
+      <input type="submit" name="submit" value="submit items">
+
+      <div class="result">
+
+      </div>
+
+    </form>
+
   </div>
-
-  <div>
-    <select id="emotion_id">
-        <% @emotions.each do |emo| %>
-            <option value="<%=emo.id%>"><%= emo.emotion %></option>
-        <% end %>
-    </select>
-  </div>
-
-
-  <div>
-      <textarea name="" id="bulkstuff" cols="30" rows="10"></textarea>
-  </div>
-
-  <input type="submit" name="submit" value="submit items">
-
-  <div class="result">
-
-  </div>
-
-</form>
 
 
 <script type="text/javascript">
