@@ -12,6 +12,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="menu">
+  <li><%= link_to "tips" , tips_path %></li>
+  <li><%= link_to "campuses" , campuses_path %></li>
+  <li><%= link_to "emotions" , emotions_path %></li>
+  <li><%= link_to "secondaries" , secondaries_path %></li>
+  <li><%= link_to "tertiaries" , tertiaries_path %></li>
+  <li><%= link_to "responses" , responses_path %></li>
+  <li><%= link_to "bulk add tool" , bulk_add_path %></li>
+</div>
 
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>

@@ -14,3 +14,46 @@ table tr:nth-child(odd){
   padding: 10px;
   background-color:#eee;
 }
+
+.menu{
+  background-color: #333;
+  width: 100vw;
+}
+
+.menu li{
+  list-style-type: none;
+  display: inline-block;
+  width: auto;
+  padding: 5px;
+  height: 20px;
+  background-color: #444;
+}
+
+.menu li:hover{
+  background-color: #222;
+}
+
+.menu li a{
+  color: aliceblue;
+  text-decoration: none;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background-color:#0779CF;
+}
+
+
+.comoros{
+  width: 100vw;
+  height: 100vh;
+  background-image: url("comoros.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.comoros img{
+  margin: 50px; 
+}

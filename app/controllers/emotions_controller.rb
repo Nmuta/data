@@ -8,7 +8,15 @@ class EmotionsController < ApplicationController
   end
 
   def get_emotions
-    emotions = Emotion.all.map{|e| {"id" =>e.id, "name"=>e.emotion} }
+    emotions = Emotion.all.map{|e| {
+        "id" =>e.id,
+        "name"=>e.emotion,
+        "secondaries" =>e.secondaries.map{|e| [e.id, e.name]},
+        "tertiaries" =>e.tertiaries.map{|e| [e.id, e.name]},
+        "responses" =>e.responses.map{|e| [e.id, e.name]}
+        }
+    }
+
     the_host = Rails.env=="production" ? "https://"+request.host : "http://localhost:3000"
     respond_to do |format|
       format.json { render json: {emotions: emotions} }
