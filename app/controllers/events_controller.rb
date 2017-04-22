@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     secondary = parsed_incoming_data["secondary"]
     tertiary = parsed_incoming_data["tertiary"]
     the_date = parsed_incoming_data["date"]
-    time_of_day = parsed_incoming_data["time_of_day"].to_i
+    time_of_day = parsed_incoming_data["time_of_day"]
     who_with = parsed_incoming_data["who_with"]
     my_response = parsed_incoming_data["response"]
     notes =parsed_incoming_data["reflection"]
