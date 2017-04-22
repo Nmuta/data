@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   def post_event
     require 'json'
     parsed_incoming_data = JSON.parse(params.first[0]);
+    puts "here is the id coming in"
     puts parsed_incoming_data["user_id"]
 
     user_id = parsed_incoming_data["user_id"].to_i
