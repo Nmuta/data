@@ -12,23 +12,24 @@ class EventsController < ApplicationController
     parsed_incoming_data = JSON.parse(params.first[0]);
     puts parsed_incoming_data["user_id"]
 
-    user_id = parsed_incoming_data["user_id"].to_i;
+    user_id = parsed_incoming_data["user_id"].to_i
     emotion_id = parsed_incoming_data["emotion_id"].to_i
+    secondary = parsed_incoming_data["secondary"]
+    tertiary = parsed_incoming_data["tertiary"]
     the_date = parsed_incoming_data["date"]
-    time_of_day = parsed_incoming_data["time_of_day"]
-    who_with = parsed_incoming_data["who_with"].to_i;
+    time_of_day = parsed_incoming_data["time_of_day"].to_i + 1
+    who_with = parsed_incoming_data["who_with"]
     my_response = parsed_incoming_data["response"]
     notes =parsed_incoming_data["reflection"]
 
-    found_person_id = Partner.find(who_with)
 
     logged_time = DateTime.strptime(the_date,'%Y-%m-%d');
     logged_time = logged_time + 4.hours; # set to 4:00 am on the given day, otherwise it can be read as previous day
 
 
     event = Event.create(user_id: user_id, emotion_id: emotion_id,
-                         logged_time: logged_time, time_of_day: time_of_day, partner_id: found_person_id,
-                          my_response: my_response, notes: notes)
+                         logged_time: logged_time, time_of_day: time_of_day, who_with: who_with,
+                          my_response: my_response, notes: notes, secondary: secondary, tertiary: tertiary)
     valid = event.persisted?
     respond_to do |format|
       format.json { render json: {valid: valid} }
@@ -43,7 +44,9 @@ class EventsController < ApplicationController
     history = Event.where(user_id: user_id).map{|e| {emotion: e.emotion.emotion,
                                                      logged_time: e.logged_time,
                                                      time_of_day: e.time_of_day,
-                                                     who_with: (e.partner.present? ? e.partner.name : nil),
+                                                     secondary: e.secondary,
+                                                     tertiary: e.tertiary,
+                                                     who_with: (e.who_with),
                                                      my_response: e.my_response,
                                                      notes: e.notes
                                                      }}
