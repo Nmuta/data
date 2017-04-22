@@ -8,19 +8,19 @@ class EventsController < ApplicationController
   end
 
   def post_event
-    parsed_incoming_data = params.first[0].split('"')
+    require 'json'
+    parsed_incoming_data = JSON.parse(params.first[0]);
+    puts parsed_incoming_data["user_id"]
 
-    puts parsed_incoming_data
+    user_id = parsed_incoming_data["user_id"].to_i;
+    emotion_id = parsed_incoming_data["emotion_id"].to_i
+    the_date = parsed_incoming_data["date"]
+    time_of_day = parsed_incoming_data["time_of_day"]
+    who_with = parsed_incoming_data["who_with"].to_i;
+    my_response = parsed_incoming_data["response"]
+    notes =parsed_incoming_data["reflection"]
 
-    user_id = params[:user_id] || (parsed_incoming_data[3]).to_i
-    emotion_id = params[:emotion_id] ||  (parsed_incoming_data[7]).to_i
-    the_date = params[:the_date] ||  (parsed_incoming_data[11])
-    time_of_day = params[:time_of_day] ||  (parsed_incoming_data[15]).gsub(" ","_")
-    who_with = params[:who_with_id] ||  (parsed_incoming_data[19]).gsub(" ","_")
-    my_response = params[:who_with_id] ||  (parsed_incoming_data[23])
-    notes = params[:who_with_id] ||  (parsed_incoming_data[27])
-
-    found_person_id = Partner.get_person_by_name(who_with)
+    found_person_id = Partner.find(who_with)
 
     logged_time = DateTime.strptime(the_date,'%Y-%m-%d');
     logged_time = logged_time + 4.hours; # set to 4:00 am on the given day, otherwise it can be read as previous day
