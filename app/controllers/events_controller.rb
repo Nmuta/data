@@ -46,7 +46,7 @@ class EventsController < ApplicationController
                                                      time_of_day: e.time_of_day,
                                                      secondary: e.secondary,
                                                      tertiary: e.tertiary,
-                                                     who_with: (e.who_with),
+                                                     who_with: e.who_with,
                                                      my_response: e.my_response,
                                                      notes: e.notes
                                                      }}
