@@ -36,13 +36,12 @@ class UsersController < ApplicationController
 
   def get_user
     parsed_incoming_data = params.first[0].split('"')
-    downcase_usr = params[:username] || downcase_param(parsed_incoming_data[3])
     usr = params[:username] || parsed_incoming_data[3]
     pass = params[:password] ||  downcase_param(parsed_incoming_data[7])
     hair, skin, facebase, glasses, moustache, earrings, hair_color = nil
 
     #username for sign in is not case sensitive.
-    valid_user = User.where('lower(username) = ? AND password =?', username.downcase, pass)
+    valid_user = User.where('lower(username) = ? AND password =?', usr.downcase, pass)
 
     Product.where('lower(name) = ?', name.downcase).first
 
