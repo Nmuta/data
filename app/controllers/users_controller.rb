@@ -36,11 +36,13 @@ class UsersController < ApplicationController
 
   def get_user
     parsed_incoming_data = params.first[0].split('"')
-    usr = params[:username] || downcase_param(parsed_incoming_data[3])
+    downcase_usr = params[:username] || downcase_param(parsed_incoming_data[3])
+    usr = params[:username] || parsed_incoming_data[3]
     pass = params[:password] ||  downcase_param(parsed_incoming_data[7])
     hair, skin, facebase, glasses, moustache, earrings, hair_color = nil
 
-    valid_user = User.where(username: usr, password: pass)
+    #username for sign in is not case sensitive. 
+    valid_user = User.where(username: usr, username: downcase_usr, password: pass)
     valid_user_exists = valid_user.any?
     user_name = valid_user_exists ? valid_user.first.username : nil
     user_id = valid_user_exists ? valid_user.first.id : nil
