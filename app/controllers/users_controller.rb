@@ -42,10 +42,7 @@ class UsersController < ApplicationController
 
     #username for sign in is not case sensitive.
     valid_user = User.where('lower(username) = ? AND password =?', usr.downcase, pass)
-
-    Product.where('lower(name) = ?', name.downcase).first
-
-
+    
     valid_user_exists = valid_user.any?
     user_name = valid_user_exists ? valid_user.first.username : nil
     user_id = valid_user_exists ? valid_user.first.id : nil
