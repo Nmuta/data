@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def get_user
     parsed_incoming_data = params.first[0].split('"')
     usr = params[:username] || parsed_incoming_data[3]
-    pass = params[:password] ||  downcase_param(parsed_incoming_data[7])
+    pass = params[:password] ||  parsed_incoming_data[7]
     hair, skin, facebase, glasses, moustache, earrings, hair_color = nil
     puts "trying to log in with "+pass
 
