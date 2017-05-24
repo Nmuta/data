@@ -7,6 +7,13 @@ class RoguesController < ApplicationController
     @rogues = Rogue.all
   end
 
+  def get_rogues
+    rogues = Rogue.all
+    respond_to do |format|
+      format.json { render json: {data: rogues } }
+    end
+  end
+
   # GET /rogues/1
   # GET /rogues/1.json
   def show

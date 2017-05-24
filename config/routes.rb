@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   post 'get_user' => 'users#get_user'
   post 'post_user' => 'users#post_user'
 
+  get 'get_rogues' => 'rogues#get_rogues'
+
   get 'bulk_add' => 'emotions#bulk_add'
   post 'bulk_processing' => 'emotions#bulk_processing'
 
