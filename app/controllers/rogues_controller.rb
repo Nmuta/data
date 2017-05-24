@@ -1,5 +1,6 @@
 class RoguesController < ApplicationController
   before_action :set_rogue, only: [:show, :edit, :update, :destroy]
+  layout "special"
 
   # GET /rogues
   # GET /rogues.json
