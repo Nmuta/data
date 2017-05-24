@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rogues
   resources :responses
   resources :tertiaries
   resources :secondaries

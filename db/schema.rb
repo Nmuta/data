@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322224030) do
+ActiveRecord::Schema.define(version: 20170524170424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20170322224030) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "campuses", id: false, force: :cascade do |t|
+    t.integer  "id",         default: "nextval('campus_id_seq'::regclass)", null: false
+    t.string   "name"
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
 
   create_table "emotions", force: :cascade do |t|
@@ -34,10 +41,13 @@ ActiveRecord::Schema.define(version: 20170322224030) do
     t.datetime "logged_time"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "time_of_day"
+    t.string   "time_of_day"
     t.integer  "partner_id"
     t.string   "my_response"
     t.string   "notes"
+    t.string   "secondary"
+    t.string   "tertiary"
+    t.string   "who_with"
   end
 
   create_table "partners", force: :cascade do |t|
@@ -63,6 +73,12 @@ ActiveRecord::Schema.define(version: 20170322224030) do
   create_table "responses", force: :cascade do |t|
     t.string   "name"
     t.integer  "emotion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rogues", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
