@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   post 'post_user' => 'users#post_user'
 
   get 'get_rogues' => 'rogues#get_rogues'
-  post 'post_rogues' => 'rogues#post_rogues'
+  post 'post_rogue' => 'rogues#post_rogue'
 
   get 'bulk_add' => 'emotions#bulk_add'
   post 'bulk_processing' => 'emotions#bulk_processing'

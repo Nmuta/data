@@ -18,11 +18,10 @@ class RoguesController < ApplicationController
   def post_rogue
 
     require 'json'
-    parsed_incoming_data = JSON.parse(params.first[0]);
     puts "here is the id coming in"
-    puts parsed_incoming_data["name"]
+    
 
-    rogue = Rogue.create(name: parsed_incoming_data["name"], talent: parsed_incoming_data["talent"])
+    rogue = Rogue.create(name: params["name"], talent: params["talent"])
 
     response = rogue.persisted? ? rogue.to_json : nil
 
