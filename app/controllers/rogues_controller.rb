@@ -18,8 +18,6 @@ class RoguesController < ApplicationController
   def post_rogue
 
     require 'json'
-    puts "here is the id coming in"
-    
 
     rogue = Rogue.create(name: params["name"], talent: params["talent"])
 

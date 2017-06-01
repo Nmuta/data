@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :fruits
   resources :rogues
   resources :responses
   resources :tertiaries
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   post 'post_user' => 'users#post_user'
 
   get 'get_rogues' => 'rogues#get_rogues'
+  get 'get_fruits' => 'fruits#get_fruits'
   post 'post_rogue' => 'rogues#post_rogue'
 
   get 'bulk_add' => 'emotions#bulk_add'
