@@ -22,6 +22,8 @@ gem 'aws-sdk', '< 2.0'
 
 gem 'rails_12factor', group: :production
 
+gem 'rails_serve_static_assets'
+
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
