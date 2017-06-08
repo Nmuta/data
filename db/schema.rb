@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524170424) do
+ActiveRecord::Schema.define(version: 20170608221345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 20170524170424) do
     t.string   "who_with"
   end
 
+  create_table "fruits", force: :cascade do |t|
+    t.string   "name"
+    t.string   "region"
+    t.integer  "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "partners", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -81,6 +89,7 @@ ActiveRecord::Schema.define(version: 20170524170424) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "talent"
   end
 
   create_table "secondaries", force: :cascade do |t|
@@ -88,6 +97,15 @@ ActiveRecord::Schema.define(version: 20170524170424) do
     t.integer  "emotion_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string   "artist"
+    t.string   "songTitle"
+    t.string   "songLength", limit: 6
+    t.string   "comments"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "tertiaries", force: :cascade do |t|

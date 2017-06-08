@@ -1,0 +1,33 @@
+<%= form_for(@song) do |f| %>
+  <% if @song.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+      <ul>
+      <% @song.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :artist %><br>
+    <%= f.text_field :artist, value: "Vinnii Otchkov" %>
+  </div>
+  <div class="field">
+    <%= f.label :songTitle %><br>
+    <%= f.text_field :songTitle %>
+  </div>
+  <div class="field">
+    <%= f.label :songLength %><br>
+    <%= f.text_field :songLength %>
+  </div>
+    <div class="field">
+      <%= f.label :comments %><br>
+      <%= f.text_area :comments, cols:40, rows: 5 %>
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

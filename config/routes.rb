@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :songs
   resources :fruits
   resources :rogues
   resources :responses
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   post 'get_user' => 'users#get_user'
   post 'post_user' => 'users#post_user'
 
+  get 'get_songs' => 'songs#get_songs'
   get 'get_rogues' => 'rogues#get_rogues'
   get 'get_fruits' => 'fruits#get_fruits'
   post 'post_rogue' => 'rogues#post_rogue'
