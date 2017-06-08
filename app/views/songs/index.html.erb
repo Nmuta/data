@@ -9,6 +9,7 @@
       <th>Songtitle</th>
       <th>Songlength</th>
       <th>Comments</th>
+      <th>url</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= song.songTitle %></td>
         <td><%= song.songLength %></td>
         <td><%= song.comments %></td>
+        <td><%= song.url %></td>
         <td><%= link_to 'Show', song %></td>
         <td><%= link_to 'Edit', edit_song_path(song) %></td>
         <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
