@@ -22,8 +22,6 @@ gem 'aws-sdk', '< 2.0'
 
 gem 'rails_12factor', group: :production
 
-gem 'rails_12factor'
-
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use SCSS for stylesheets
@@ -75,3 +73,6 @@ group :development do
   gem 'pry'
 end
 
+# gem 'spree', '~> 3.4.0'
+# gem 'spree_auth_devise', '~> 3.3'
+# gem 'spree_gateway', '~> 3.3'

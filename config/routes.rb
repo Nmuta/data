@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   get 'bulk_add' => 'emotions#bulk_add'
   post 'bulk_processing' => 'emotions#bulk_processing'
 
+  post 'update_user/:id' => 'users#avatar_cache'
+
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

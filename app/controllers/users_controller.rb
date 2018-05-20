@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :avatar_cache]
   skip_before_filter :verify_authenticity_token, only: [:get_user]
 
   # GET /users
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     usr = params[:username] || parsed_incoming_data[3]
     pass = params[:password] ||  parsed_incoming_data[7]
     hair, skin, facebase, glasses, moustache, earrings, hair_color = nil
-    puts "trying to log in with "+pass
+
 
     #username for sign in is not case sensitive.
     valid_user = User.where('lower(username) = ? AND password =?', usr.downcase, pass)
@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     user_name = valid_user_exists ? valid_user.first.username : nil
     user_id = valid_user_exists ? valid_user.first.id : nil
     campus_name = (valid_user_exists && valid_user.first.campus) ? valid_user.first.campus.name : nil
+    avatar_cache = valid_user_exists ? valid_user.first.avatar_cache : nil
     if valid_user_exists && valid_user.first && valid_user.first.active_profile
       vu = valid_user.first
       hair = vu.active_profile.hair
@@ -62,8 +63,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json { render json: {valid_user: valid_user_exists, user_name: user_name,
                                   user_id: user_id, campus_name: campus_name,
-                                  hair: hair, skin: skin, facebase: facebase,
-                                  glasses: glasses, moustache: moustache, earrings: earrings} }
+                                  avatar_cache: avatar_cache} }
     end
   end
 
@@ -101,7 +101,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(parsed_incoming_data)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -109,6 +109,33 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def avatar_cache
+    arr = params.first[0].split(",")
+    updated_cache = []
+    arr.each do |element|
+        thing =  element
+        puts "thing was "+thing
+        new_thing = thing.slice(0,thing.length)
+        updated_cache.push(new_thing)
+        puts "new thing is "+new_thing
+    end
+    updated_cache = updated_cache.to_s
+    puts "Updated cache is #{updated_cache}"
+    if arr
+      respond_to do |format|
+        if @user.update({avatar_cache: updated_cache})
+          puts"updated cache"
+          puts updated_cache
+          format.json { render :show, status: :ok, location: @user }
+        else
+          puts "it did not save"
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
   end
 
   # DELETE /users/1
@@ -133,6 +160,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :campus_id, :first_name, :last_name, :password, :avatar)
+      params.require(:user).permit(:username, :email, :campus_id, :first_name, :last_name, :password, :avatar, :avatar_cache)
     end
 end
