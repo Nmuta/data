@@ -112,22 +112,16 @@ class UsersController < ApplicationController
   end
 
   def avatar_cache
-    arr = params.first[0].split(",")
-    updated_cache = []
-    arr.each do |element|
-        thing =  element
-        puts "thing was "+thing
-        new_thing = thing.slice(0,thing.length)
-        updated_cache.push(new_thing)
-        puts "new thing is "+new_thing
-    end
-    updated_cache = updated_cache.to_s
-    puts "Updated cache is #{updated_cache}"
-    if arr
+
+    avatar_cache = params.first[0]
+    the_array = []
+
+    if avatar_cache
       respond_to do |format|
-        if @user.update({avatar_cache: updated_cache})
-          puts"updated cache"
-          puts updated_cache
+        the_array.push(avatar_cache)
+        if @user.update({avatar_cache: the_array})
+          puts"updated new array .>"
+          puts the_array
           format.json { render :show, status: :ok, location: @user }
         else
           puts "it did not save"
